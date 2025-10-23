@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "math.h": "c",
+        "format.h": "c",
+        "calculator.c": "cpp",
+        "execute.h": "c",
+        "calculator.h": "c",
+        "stdio.h": "c"
+    }
+}
