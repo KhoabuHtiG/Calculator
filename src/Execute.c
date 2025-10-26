@@ -2,7 +2,7 @@
 #include "../include/Format.h"
 #include "../include/Calculator.h"
 
-void clearScreen() {
+void ClearScreen() {
     #ifdef _WIN32
         system("cls");
     #elif __linux__
@@ -10,14 +10,14 @@ void clearScreen() {
     #endif
 }
 
-void execute(const char option) {
+void Execute(const char option) {
     switch (option) {
         case '1':
-            clearScreen();
-            basicOps();
+            ClearScreen();
+            BasicOps();
             break;
         case '2':
-            printf("%d\n", generateRandomNumber());
+            printf("%d\n", GenerateRandomNumber());
             break;
         default:
             printf("Invalid option. Please try again.\n");

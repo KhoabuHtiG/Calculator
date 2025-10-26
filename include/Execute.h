@@ -1,5 +1,5 @@
 #pragma once
-#include <stdio.h>
+#include "Core.h"
 
-void execute(const char option);
-void clearScreen();
+void Execute(const char option);
+void ClearScreen();

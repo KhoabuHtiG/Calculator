@@ -1,57 +1,57 @@
 #include "../include/Calculator.h"
+#include "../include/Format.h"
 
-int result = 0, addup;
+double result = 0, addup;
 
-void getNumber() {
+void GetNumber() {
     printf("Enter your number: ");
-    scanf("%d", &addup);
+    scanf("%lf", &addup);
 }
 
-void basicOps() {
+void BasicOps() {
     char oper;
-    printf("Current result: %d\n", result);
+    printf("Current result: %lf\n", result);
 
     while (1) {
-        printf("Operators: '+', '-', '*', '/' || 'r': Return to main menu || 'c': Clear result\n");
+        printf("Operators: '+', '-', '*', '/' || 'r': Return to menu || 'c': Clear result\n");
+
         printf("Choose: ");
         scanf(" %c", &oper);
 
         switch (oper) {
-            case '+':
-                getNumber();
-
-                result += addup;
-                printf("Current result: %d\n", result);
-
-                break;
-            case '-':
-                getNumber();
-
-                result -= addup;
-                printf("Current result: %d\n", result);
-
-                break;
-            case '*':
-                getNumber();
-
-                result *= addup;
-                printf("Current result: %d\n", result);
-
-                break;
-            case '/':
-                getNumber();
-
-                result /= addup;
-                printf("Current result: %d\n", result);
+            case 'c':
+                result = 0;
+                printf("Current result: %lf\n", result);
 
                 break;
             case 'r':
-            case 'R':
                 return;
-            case 'c':
-            case 'C':
-                result = 0;
-                printf("Current result: %d\n", result);
+            case '+':
+                GetNumber();
+
+                Add(&result, addup);
+                printf("Current result: %lf\n", result);
+
+                break;
+            case '-':
+                GetNumber();
+
+                Subtract(&result, addup);
+                printf("Current result: %lf\n", result);
+
+                break;
+            case '*':
+                GetNumber();
+
+                Multiply(&result, addup);
+                printf("Current result: %lf\n", result);
+
+                break;
+            case '/':
+                GetNumber();
+
+                Divided(&result, addup);
+                printf("Current result: %lf\n", result);
 
                 break;
             default:

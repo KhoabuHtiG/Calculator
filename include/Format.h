@@ -1,6 +1,11 @@
 #pragma once
-#include <math.h>
-#include <stdlib.h>
-#include <time.h>
+#include "Core.h"
 
-int generateRandomNumber();
+int Add(double *x, double y);
+int Subtract(double *x, double y);
+int Multiply(double *x, double y);
+int Divided(double *x, double y);
+
+int SquareRoot(double *x);
+
+int GenerateRandomNumber();

@@ -1,8 +1,5 @@
 #pragma once
-#include <math.h>
-#include <stdio.h>
+#include "Core.h"
 
-extern int result, addup;
-
-void getNumber();
-void basicOps();
+void GetNumber();
+void BasicOps();
