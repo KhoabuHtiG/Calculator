@@ -2,4 +2,3 @@
 #include "Core.h"
 
 void Execute(const char option);
-void ClearScreen();

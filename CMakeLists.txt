@@ -10,6 +10,7 @@ set(SOURCES
     src/Execute.c
     src/Format.c
     src/Main.c
+    src/Core.c
 )
 
 add_executable(calculator ${SOURCES})

@@ -1,14 +1,7 @@
 #include "../include/Execute.h"
 #include "../include/Format.h"
 #include "../include/Calculator.h"
-
-void ClearScreen() {
-    #ifdef _WIN32
-        system("cls");
-    #elif __linux__
-        system("clear");
-    #endif
-}
+#include "../include/Core.h"
 
 void Execute(const char option) {
     switch (option) {
