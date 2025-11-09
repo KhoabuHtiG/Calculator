@@ -12,8 +12,5 @@ void Execute(const char option) {
         case '2':
             printf("%d\n", GenerateRandomNumber());
             break;
-        default:
-            printf("Invalid option. Please try again.\n");
-            break;
     }
 }
