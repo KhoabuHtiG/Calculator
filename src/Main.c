@@ -13,7 +13,7 @@ static char GetUserChoice(void) {
     return tolower(choice);
 }
 
-static bool HandleSytemCommand(char option) {
+static bool HandleUserInput(const char option) {
     if (option == QUIT_OPTION) {
         printf("Thanks for using!");
         return true;
@@ -40,7 +40,7 @@ int main() {
 
         option = GetUserChoice();
 
-        if (HandleSytemCommand(option)) {
+        if (HandleUserInput(option)) {
             break;
         }
 
