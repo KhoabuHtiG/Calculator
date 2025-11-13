@@ -3,11 +3,21 @@
 
 #define CLEAR_OPTION 'c'
 #define RETURN_OPTION 'r'
-double result = 0, addup;
 
-void GetNumber() {
+typedef struct {
+    double result;
+} CalcState;
+
+static bool GetNumber(double *addup) {
     printf("Enter your number: ");
-    scanf("%lf", &addup);
+
+    if (scanf("%lf", addup) != 1) {
+        while (getchar() != '\n');
+        printf("Invalid number. Please try again.\n");
+        return false;
+    }
+
+    return true;
 }
 
 static char GetUserChoice(void) {
@@ -21,24 +31,24 @@ static char GetUserChoice(void) {
     return tolower(choice);
 }
 
-void RunBasicOps(const char choice) {
+static void RunBasicOps(CalcState *calc, const char choice, double addup) {
     switch (choice) {
         case '+':
-            Add(&result, addup);
+            Add(&calc->result, addup);
             break;
         case '-':
-            Subtract(&result, addup);
+            Subtract(&calc->result, addup);
             break;
         case '*':
-            Multiply(&result, addup);
+            Multiply(&calc->result, addup);
             break;
         case '/':
-            if (result == 0 || addup == 0) {
-                printf("Error: Can't divided by zero. Please try again\n");
+            if (addup == 0) {
+                printf("Error: Cannot divide by zero. Please try again\n");
                 break;
             }
 
-            Divided(&result, addup);
+            Divided(&calc->result, addup);
             break;
         default:
             printf("Invalid operator. Please try again\n");
@@ -46,25 +56,31 @@ void RunBasicOps(const char choice) {
     }
 }
 
-void BasicOps() {
-    char choice;
-    printf("Current result: %lf\n", result);
+static void PrintPrompt() {
+    printf("Operators: '+', '-', '*', '/' || '%c': Return to menu || '%c': Clear result\n", RETURN_OPTION, CLEAR_OPTION);
+    printf("Choose: ");
+}
 
-    while (1) {
-        printf("Operators: '+', '-', '*', '/' || 'r': Return to menu || 'c': Clear result\n");
-        printf("Choose: ");
-        
-        choice = GetUserChoice();
+void BasicOpers(void) {
+    CalcState calc = {0.0};
+    double addup;
+
+    while (true) {
+        printf("Current result: %lf\n", calc.result);
+
+        PrintPrompt();
+        char choice = GetUserChoice();
 
         if (choice == RETURN_OPTION) return;
         if (choice == CLEAR_OPTION) {
-            result = 0;
+            calc.result = 0;
             continue;
         }
 
-        GetNumber();
-        RunBasicOps(choice);
+        if (!GetNumber(&addup)) {
+            continue;
+        }
 
-        printf("Current result: %lf\n", result);
+        RunBasicOps(&calc, choice, addup);
     }
 }

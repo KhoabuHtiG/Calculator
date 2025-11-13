@@ -28,16 +28,19 @@ static bool HandleUserInput(const char option) {
     return false;
 }
 
+static void PrintPrompt() {
+    printf("'%c': Quit || '%c': Show menu\n", QUIT_OPTION, MENU_OPTION);
+    printf("Choose: ");
+}
+
 int main() {
     char option;
     
     ClearScreen();
     PrintMenu();
 
-    while (1) {
-        printf("'r': Quit || 'm': Show menu\n");
-        printf("Choose: ");
-
+    while (true) {
+        PrintPrompt();
         option = GetUserChoice();
 
         if (HandleUserInput(option)) {

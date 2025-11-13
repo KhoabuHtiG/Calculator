@@ -3,14 +3,20 @@
 #include "../include/Calculator.h"
 #include "../include/Core.h"
 
+#define OPTIONS_BASIC_OPERATORS '1'
+#define OPTIONS_RANDOM_NUMBERS '2'
+
 void Execute(const char option) {
     switch (option) {
-        case '1':
+        case OPTIONS_BASIC_OPERATORS:
             ClearScreen();
-            BasicOps();
+            BasicOpers();
             break;
-        case '2':
+        case OPTIONS_RANDOM_NUMBERS:
             printf("%d\n", GenerateRandomNumber());
+            break;
+        default:
+            printf("Invalid options: %c. Please try again.\n", option);
             break;
     }
 }
