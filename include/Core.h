@@ -7,10 +7,11 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-typedef struct Settings {
+typedef struct {
     int decimals_show;
-};
-extern struct Settings set;
+} Settings;
+
+extern Settings set;
 
 void PrintMenu();
 void ClearScreen();

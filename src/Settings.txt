@@ -1,1 +1,1 @@
-decimals_show = 2
+decimals_places = 3

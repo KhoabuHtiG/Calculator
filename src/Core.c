@@ -1,6 +1,6 @@
 #include "../include/Core.h"
 
-struct Settings set;
+Settings set;
 
 char *menu[] = {"---Menu---", "1. Basic Operators", "2. Generate Random Number"};
 int menuLength = sizeof(menu) / sizeof(menu[0]);
@@ -16,7 +16,7 @@ void ClearScreen() {
 }
 
 bool GetData() {
-    FILE *settingsFile = fopen("Settings.txt", "r");
+    FILE *settingsFile = fopen("../src/Settings.txt", "r");
 
     if (!settingsFile) {
         printf("Error: Cannot open file.\n");
@@ -24,7 +24,25 @@ bool GetData() {
     }
 
     char buffer[256];
-    
+
+    if (fgets(buffer, sizeof(buffer), settingsFile) == NULL) {
+        printf("Error: Settings.txt is empty\n");
+        fclose(settingsFile);
+        return false;
+    }
+
+    int decimals;
+    if (sscanf(buffer, "decimals_places = %d", &decimals) == 1) {
+        set.decimals_show = decimals;
+    } else if (sscanf(buffer, "%d", &decimals) == 1) {
+        set.decimals_show = decimals;
+    } else {
+        printf("Error: Invalid format in Settings.txt\n");
+        fclose(settingsFile);
+        return false;
+    }
+
+    printf("Decimals places: %d", set.decimals_show);
 
     fclose(settingsFile);
     return true;

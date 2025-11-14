@@ -66,7 +66,7 @@ void BasicOpers(void) {
     double addup;
 
     while (true) {
-        printf("Current result: %lf\n", calc.result);
+        printf("Current result: %.*lf\n", set.decimals_show, calc.result);
 
         PrintPrompt();
         char choice = GetUserChoice();

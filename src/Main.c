@@ -6,10 +6,12 @@
 
 static char GetUserChoice(void) {
     char choice;
+
     if (scanf(" %c", &choice) != 1) {
         while (getchar() != '\n');
         return '\0';
     }
+    
     return tolower(choice);
 }
 
@@ -36,6 +38,11 @@ static void PrintPrompt() {
 int main() {
     char option;
     
+    if (!GetData()) {
+        printf("Failed to proceed\n");
+        return 1;
+    }
+
     ClearScreen();
     PrintMenu();
 
