@@ -6,6 +6,9 @@ char *menu[] = {"---Menu---", "1. Basic Operators", "2. Generate Random Number"}
 int menuLength = sizeof(menu) / sizeof(menu[0]);
 
 void PrintMenu() {for (int i = 0; i < menuLength; i++) printf("%s\n", menu[i]);}
+Settings* GetSettings() {
+    return &set;
+}
 
 void ClearScreen() {
     #ifdef _WIN32
@@ -43,6 +46,20 @@ bool GetData() {
     }
 
     printf("Decimals places: %d", set.decimals_show);
+
+    fclose(settingsFile);
+    return true;
+}
+
+bool SaveSettings() {
+    FILE *settingsFile = fopen("../src/Settings.txt", "w");
+
+    if (!settingsFile) {
+        printf("Error: Cannot save to Settings.txt\n");
+        return false;
+    }
+
+    fprintf(settingsFile, "decimals_places = %d\n", set.decimals_show);
 
     fclose(settingsFile);
     return true;

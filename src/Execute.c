@@ -2,9 +2,11 @@
 #include "../include/Format.h"
 #include "../include/Calculator.h"
 #include "../include/Core.h"
+#include "../include/Settings.h"
 
 #define OPTIONS_BASIC_OPERATORS '1'
 #define OPTIONS_RANDOM_NUMBERS '2'
+#define OPTIONS_SETTINGS 's'
 
 void Execute(const char option) {
     switch (option) {
@@ -13,10 +15,11 @@ void Execute(const char option) {
             BasicOpers();
             break;
         case OPTIONS_RANDOM_NUMBERS:
+            ClearScreen();
             printf("%d\n", GenerateRandomNumber());
             break;
-        default:
-            printf("Invalid options: %c. Please try again.\n", option);
-            break;
+        case OPTIONS_SETTINGS:
+            ClearScreen();
+            SettingsFunc();
     }
 }

@@ -11,8 +11,8 @@ typedef struct {
     int decimals_show;
 } Settings;
 
-extern Settings set;
-
 void PrintMenu();
 void ClearScreen();
 bool GetData();
+bool SaveSettings();
+Settings* GetSettings();

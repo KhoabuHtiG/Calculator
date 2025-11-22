@@ -2,7 +2,7 @@
 #include "../include/Execute.h"
 
 #define QUIT_OPTION 'r'
-#define MENU_OPTION 'm'
+#define SETTINGS_OPTION 's'
 
 static char GetUserChoice(void) {
     char choice;
@@ -21,17 +21,11 @@ static bool HandleUserInput(const char option) {
         return true;
     }
 
-    if (option == MENU_OPTION) {
-        ClearScreen();
-        PrintMenu();
-        return false;
-    }
-
     return false;
 }
 
 static void PrintPrompt() {
-    printf("'%c': Quit || '%c': Show menu\n", QUIT_OPTION, MENU_OPTION);
+    printf("'%c': Quit || '%c': Settings\n", QUIT_OPTION, SETTINGS_OPTION);
     printf("Choose: ");
 }
 
@@ -43,10 +37,10 @@ int main() {
         return 1;
     }
 
-    ClearScreen();
-    PrintMenu();
-
     while (true) {
+        ClearScreen();
+        PrintMenu();
+
         PrintPrompt();
         option = GetUserChoice();
 
