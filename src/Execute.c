@@ -16,10 +16,15 @@ void Execute(const char option) {
             break;
         case OPTIONS_RANDOM_NUMBERS:
             ClearScreen();
-            printf("%d\n", GenerateRandomNumber());
+            int result = GenerateRandomNumber();
+
+            printf("%d\n", result);
+
+            WaitForEnter();
             break;
         case OPTIONS_SETTINGS:
             ClearScreen();
             SettingsFunc();
+            break;
     }
 }

@@ -1,1 +1,1 @@
-decimals_places = 3
+decimals_places = 0

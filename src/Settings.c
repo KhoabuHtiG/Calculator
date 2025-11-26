@@ -27,6 +27,7 @@ static char GetUserChoice(void) {
 void ChangeDecimalsPlaces() {
     while (true) {
         printf("Current decimals show: %d\n", GetSettings()->decimals_show);
+        printf("Current quit comfirming state: %d\n", GetSettings()->comfirm_quit);
         printf("Change: 'y' || Return: '%c'\n", RETURN_OPTION);
 
         printf("Choose: ");
@@ -34,6 +35,7 @@ void ChangeDecimalsPlaces() {
 
         if (choice == 'r') {
             ClearScreen();
+            return;
         }
 
         if (choice == 'y') {

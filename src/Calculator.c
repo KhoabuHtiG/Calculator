@@ -4,10 +4,6 @@
 #define CLEAR_OPTION 'c'
 #define RETURN_OPTION 'r'
 
-typedef struct {
-    double result;
-} CalcState;
-
 static bool GetNumber(double *addup) {
     printf("Enter your number: ");
 
@@ -72,6 +68,7 @@ void BasicOpers(void) {
         char choice = GetUserChoice();
 
         if (choice == RETURN_OPTION) return;
+
         if (choice == CLEAR_OPTION) {
             calc.result = 0;
             continue;

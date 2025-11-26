@@ -17,6 +17,7 @@ static char GetUserChoice(void) {
 
 static bool HandleUserInput(const char option) {
     if (option == QUIT_OPTION) {
+
         printf("Thanks for using!");
         return true;
     }

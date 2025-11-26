@@ -18,6 +18,11 @@ void ClearScreen() {
     #endif
 }
 
+void WaitForEnter() {
+    printf("Enter to continue...");
+    while (getchar() != '\n');
+}
+
 bool GetData() {
     FILE *settingsFile = fopen("../src/Settings.txt", "r");
 
@@ -27,25 +32,34 @@ bool GetData() {
     }
 
     char buffer[256];
-
     if (fgets(buffer, sizeof(buffer), settingsFile) == NULL) {
         printf("Error: Settings.txt is empty\n");
         fclose(settingsFile);
         return false;
     }
 
-    int decimals;
-    if (sscanf(buffer, "decimals_places = %d", &decimals) == 1) {
-        set.decimals_show = decimals;
-    } else if (sscanf(buffer, "%d", &decimals) == 1) {
-        set.decimals_show = decimals;
-    } else {
+    while (fgets(buffer, sizeof(buffer), settingsFile)) {
+        int decimals;
+        bool comfirm_quit;
+
+        if (sscanf(buffer, "decimals_places = %d", &decimals) == 1) {
+            set.decimals_show = decimals;
+            continue;
+        } 
+        
+        if (sscanf(buffer, "comfirm_quit = %d", &comfirm_quit) == 1) {
+            if (comfirm_quit == 1) {
+                set.comfirm_quit = true;
+            } else set.comfirm_quit = false;
+
+            continue;
+        }
+
         printf("Error: Invalid format in Settings.txt\n");
         fclose(settingsFile);
+
         return false;
     }
-
-    printf("Decimals places: %d", set.decimals_show);
 
     fclose(settingsFile);
     return true;

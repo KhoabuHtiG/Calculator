@@ -9,10 +9,13 @@
 
 typedef struct {
     int decimals_show;
+    int comfirm_quit;
 } Settings;
 
 void PrintMenu();
 void ClearScreen();
+void WaitForEnter();
+
 bool GetData();
 bool SaveSettings();
 Settings* GetSettings();
