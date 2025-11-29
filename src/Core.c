@@ -74,6 +74,7 @@ bool SaveSettings() {
     }
 
     fprintf(settingsFile, "decimals_places = %d\n", set.decimals_show);
+    fprintf(settingsFile, "comfirm_quit = %d\n", set.comfirm_quit);
 
     fclose(settingsFile);
     return true;

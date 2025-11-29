@@ -17,6 +17,17 @@ static char GetUserChoice(void) {
 
 static bool HandleUserInput(const char option) {
     if (option == QUIT_OPTION) {
+        if (GetSettings()->comfirm_quit = 1) {
+            printf("Do you sure want to quit? Any result will not be save. (y/n): ");
+            char quitChoice = GetUserChoice();
+
+            if (quitChoice == 'y') {
+                printf("Thanks for using!");
+                return true;
+            }
+
+            return false;
+        }
 
         printf("Thanks for using!");
         return true;

@@ -1,4 +1,5 @@
 #include "Core.h"
 
 void SettingsFunc();
-bool ChangeDecimalsPlaces();
+void ChangeDecimalsPlaces();
+void ChangeComfirmQuit();

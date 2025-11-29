@@ -2,7 +2,7 @@
 
 #define RETURN_OPTION 'r'
 
-char *settingsOption[] = {"1. Change decimals_places"};
+char *settingsOption[] = {"1. Change decimals places", "2. Change quit comfirming"};
 int arrSize = sizeof(settingsOption) / sizeof(settingsOption[0]);
 
 static void PrintPrompt() {
@@ -27,6 +27,30 @@ static char GetUserChoice(void) {
 void ChangeDecimalsPlaces() {
     while (true) {
         printf("Current decimals show: %d\n", GetSettings()->decimals_show);
+        printf("Change: 'y' || Return: '%c'\n", RETURN_OPTION);
+
+        printf("Choose: ");
+        char choice = GetUserChoice();
+
+        if (choice == 'r') {
+            ClearScreen();
+            return;
+        }
+
+        if (choice == 'y') {
+            int value;
+
+            printf("Set a new number (0 - 14): ");
+            scanf("%d", &value);
+
+            GetSettings()->decimals_show = value;
+            ClearScreen();
+        }
+    }
+}
+
+void ChangeComfirmQuit() {
+    while (true) {
         printf("Current quit comfirming state: %d\n", GetSettings()->comfirm_quit);
         printf("Change: 'y' || Return: '%c'\n", RETURN_OPTION);
 
@@ -39,12 +63,17 @@ void ChangeDecimalsPlaces() {
         }
 
         if (choice == 'y') {
-            int new;
+            int value;
 
-            printf("Set a new number (0 - 14): ");
-            scanf("%d", &new);
+            printf("Set true/false (1 - 0): ");
+            scanf("%d", &value);
 
-            GetSettings()->decimals_show = new;
+            if (value != 1 && value != 0) {
+                printf("Invalid input. Please try again.\n");
+                continue;
+            }
+
+            GetSettings()->comfirm_quit = value;
             ClearScreen();
         }
     }
@@ -55,6 +84,10 @@ static void HandleSettingsCommand(char choice) {
         case '1':
             ClearScreen();
             ChangeDecimalsPlaces();
+            break;
+        case '2':
+            ClearScreen();
+            ChangeComfirmQuit();
             break;
         default:
             printf("Invalid Option. Please try again.\n");
