@@ -48,6 +48,8 @@ int main() {
         return 1;
     }
 
+    GetSettings();
+
     while (true) {
         ClearScreen();
         PrintMenu();

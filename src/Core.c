@@ -33,36 +33,36 @@ bool GetData() {
     }
 
     char buffer[256];
-    if (fgets(buffer, sizeof(buffer), settingsFile) == NULL) {
-        printf("Error: Settings.txt is empty\n");
-        fclose(settingsFile);
-        return false;
-    }
+    bool foundSomething = false;
 
     while (fgets(buffer, sizeof(buffer), settingsFile)) {
         int decimals;
-        bool confirm_quit;
+        int confirm_quit_temp;
 
         if (sscanf(buffer, "decimals_places = %d", &decimals) == 1) {
             set.decimals_show = decimals;
+            foundSomething = true;
             continue;
-        } 
-        
-        if (sscanf(buffer, "confirm_quit = %d", &confirm_quit) == 1) {
-            if (confirm_quit == 1) {
-                set.confirm_quit = true;
-            } else set.confirm_quit = false;
+        }
 
+        if (sscanf(buffer, "confirm_quit = %d", &confirm_quit_temp) == 1) {
+            set.confirm_quit = (confirm_quit_temp == 1);
+            foundSomething = true;
             continue;
         }
 
         printf("Error: Invalid format in Settings.txt\n");
         fclose(settingsFile);
-
         return false;
     }
 
     fclose(settingsFile);
+
+    if (!foundSomething) {
+        printf("Error: Settings.txt is empty\n");
+        return false;
+    }
+
     return true;
 }
 
