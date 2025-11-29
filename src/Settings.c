@@ -2,7 +2,7 @@
 
 #define RETURN_OPTION 'r'
 
-char *settingsOption[] = {"1. Change decimals places", "2. Change quit comfirming"};
+char *settingsOption[] = {"1. Change decimals places", "2. Change quit confirming"};
 int arrSize = sizeof(settingsOption) / sizeof(settingsOption[0]);
 
 static void PrintPrompt() {
@@ -33,6 +33,7 @@ void ChangeDecimalsPlaces() {
         char choice = GetUserChoice();
 
         if (choice == 'r') {
+            SaveSettings();
             ClearScreen();
             return;
         }
@@ -40,7 +41,7 @@ void ChangeDecimalsPlaces() {
         if (choice == 'y') {
             int value;
 
-            printf("Set a new number (0 - 14): ");
+            printf("Set a new number: ");
             scanf("%d", &value);
 
             GetSettings()->decimals_show = value;
@@ -49,15 +50,16 @@ void ChangeDecimalsPlaces() {
     }
 }
 
-void ChangeComfirmQuit() {
+void ChangeConfirmQuit() {
     while (true) {
-        printf("Current quit comfirming state: %d\n", GetSettings()->comfirm_quit);
+        printf("Current quit confirming state: %d\n", GetSettings()->confirm_quit);
         printf("Change: 'y' || Return: '%c'\n", RETURN_OPTION);
 
         printf("Choose: ");
         char choice = GetUserChoice();
 
         if (choice == 'r') {
+            SaveSettings();
             ClearScreen();
             return;
         }
@@ -73,7 +75,7 @@ void ChangeComfirmQuit() {
                 continue;
             }
 
-            GetSettings()->comfirm_quit = value;
+            GetSettings()->confirm_quit = value;
             ClearScreen();
         }
     }
@@ -87,7 +89,7 @@ static void HandleSettingsCommand(char choice) {
             break;
         case '2':
             ClearScreen();
-            ChangeComfirmQuit();
+            ChangeConfirmQuit();
             break;
         default:
             printf("Invalid Option. Please try again.\n");

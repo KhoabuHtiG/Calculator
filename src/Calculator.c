@@ -62,6 +62,7 @@ void BasicOpers(void) {
     double addup;
 
     while (true) {
+        ClearScreen();
         printf("Current result: %.*lf\n", GetSettings()->decimals_show, calc.result);
 
         PrintPrompt();

@@ -28,7 +28,7 @@ static bool HandleUserInput(const char option) {
             return false;
         }
 
-        printf("Thanks for using!");
+        printf("Thanks for using!\n");
         return true;
     }
 

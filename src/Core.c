@@ -19,8 +19,9 @@ void ClearScreen() {
 }
 
 void WaitForEnter() {
-    printf("Enter to continue...");
-    while (getchar() != '\n');
+    printf("Enter to continue...\n");
+    while (getchar() != '\n') {}
+    while (getchar() != '\n') {}
 }
 
 bool GetData() {
@@ -40,15 +41,15 @@ bool GetData() {
 
     while (fgets(buffer, sizeof(buffer), settingsFile)) {
         int decimals;
-        bool comfirm_quit;
+        bool confirm_quit;
 
         if (sscanf(buffer, "decimals_places = %d", &decimals) == 1) {
             set.decimals_show = decimals;
             continue;
         } 
         
-        if (sscanf(buffer, "confirm_quit = %d", &comfirm_quit) == 1) {
-            if (comfirm_quit == 1) {
+        if (sscanf(buffer, "confirm_quit = %d", &confirm_quit) == 1) {
+            if (confirm_quit == 1) {
                 set.confirm_quit = true;
             } else set.confirm_quit = false;
 
@@ -74,7 +75,7 @@ bool SaveSettings() {
     }
 
     fprintf(settingsFile, "decimals_places = %d\n", set.decimals_show);
-    fprintf(settingsFile, "comfirm_quit = %d\n", set.confirm_quit);
+    fprintf(settingsFile, "confirm_quit = %d\n", set.confirm_quit);
 
     fclose(settingsFile);
     return true;

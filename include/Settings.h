@@ -3,4 +3,4 @@
 
 void SettingsFunc();
 void ChangeDecimalsPlaces();
-void ChangeComfirmQuit();
+void ChangeConfirmQuit();
