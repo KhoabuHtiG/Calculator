@@ -2,7 +2,6 @@
 #include "../include/Execute.h"
 
 #define QUIT_OPTION 'r'
-#define SETTINGS_OPTION 's'
 
 static char GetUserChoice(void) {
     char choice;
@@ -17,12 +16,12 @@ static char GetUserChoice(void) {
 
 static bool HandleUserInput(const char option) {
     if (option == QUIT_OPTION) {
-        if (GetSettings()->comfirm_quit = 1) {
+        if (GetSettings()->confirm_quit == 1) {
             printf("Do you sure want to quit? Any result will not be save. (y/n): ");
             char quitChoice = GetUserChoice();
 
             if (quitChoice == 'y') {
-                printf("Thanks for using!");
+                printf("Thanks for using!\n");
                 return true;
             }
 
@@ -45,7 +44,7 @@ int main() {
     char option;
     
     if (!GetData()) {
-        printf("Failed to proceed\n");
+        printf("Failed to get data\n");
         return 1;
     }
 
@@ -56,9 +55,7 @@ int main() {
         PrintPrompt();
         option = GetUserChoice();
 
-        if (HandleUserInput(option)) {
-            break;
-        }
+        if (HandleUserInput(option)) break;
 
         Execute(option);
     }

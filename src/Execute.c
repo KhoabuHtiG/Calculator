@@ -6,7 +6,6 @@
 
 #define OPTIONS_BASIC_OPERATORS '1'
 #define OPTIONS_RANDOM_NUMBERS '2'
-#define OPTIONS_SETTINGS 's'
 
 void Execute(const char option) {
     switch (option) {
@@ -22,7 +21,7 @@ void Execute(const char option) {
 
             WaitForEnter();
             break;
-        case OPTIONS_SETTINGS:
+        case SETTINGS_OPTION:
             ClearScreen();
             SettingsFunc();
             break;

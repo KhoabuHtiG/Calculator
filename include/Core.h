@@ -7,9 +7,11 @@
 #include <stdbool.h>
 #include <ctype.h>
 
+#define SETTINGS_OPTION 's'
+
 typedef struct {
     int decimals_show;
-    int comfirm_quit;
+    int confirm_quit;
 } Settings;
 
 void PrintMenu();

@@ -47,10 +47,10 @@ bool GetData() {
             continue;
         } 
         
-        if (sscanf(buffer, "comfirm_quit = %d", &comfirm_quit) == 1) {
+        if (sscanf(buffer, "confirm_quit = %d", &comfirm_quit) == 1) {
             if (comfirm_quit == 1) {
-                set.comfirm_quit = true;
-            } else set.comfirm_quit = false;
+                set.confirm_quit = true;
+            } else set.confirm_quit = false;
 
             continue;
         }
@@ -74,7 +74,7 @@ bool SaveSettings() {
     }
 
     fprintf(settingsFile, "decimals_places = %d\n", set.decimals_show);
-    fprintf(settingsFile, "comfirm_quit = %d\n", set.comfirm_quit);
+    fprintf(settingsFile, "comfirm_quit = %d\n", set.confirm_quit);
 
     fclose(settingsFile);
     return true;

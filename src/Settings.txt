@@ -1,2 +1,2 @@
 decimals_places = 0
-comfirm_quit = 1
+confirm_quit = 1
