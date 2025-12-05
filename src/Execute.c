@@ -25,5 +25,7 @@ void Execute(const char option) {
             ClearScreen();
             SettingsFunc();
             break;
+        default:
+            printf("Invalid option. Please try again\n");
     }
 }

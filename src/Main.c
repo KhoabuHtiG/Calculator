@@ -7,32 +7,35 @@ static char GetUserChoice(void) {
     char choice;
 
     if (scanf(" %c", &choice) != 1) {
-        while (getchar() != '\n');
+        int ch;
+        while ((ch = getchar()) != '\n' && ch != EOF);
+
         return '\0';
     }
+
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
     
     return tolower(choice);
 }
 
 static bool HandleUserInput(const char option) {
-    if (option == QUIT_OPTION) {
-        if (GetSettings()->confirm_quit == 1) {
-            printf("Do you sure want to quit? Any result will not be save. (y/n): ");
-            char quitChoice = GetUserChoice();
+    if (option != QUIT_OPTION) return false;
 
-            if (quitChoice == 'y') {
-                printf("Thanks for using!\n");
-                return true;
-            }
+    if (GetSettings()->confirm_quit == 1) {
+        printf("Are you sure you want to quit? Your results will not be saved (y/n): ");
+        char quitChoice = GetUserChoice();
 
-            return false;
+        if (quitChoice == 'y') {
+            printf("Thanks for using!\n");
+            return true;
         }
 
-        printf("Thanks for using!\n");
-        return true;
+        return false;
     }
 
-    return false;
+    printf("Thanks for using!\n");
+    return true;
 }
 
 static void PrintPrompt() {
@@ -41,24 +44,22 @@ static void PrintPrompt() {
 }
 
 int main() {
-    char option;
+    char menuOption;
     
     if (!GetData()) {
         printf("Failed to get data\n");
         return 1;
     }
 
-    GetSettings();
-
     while (true) {
         ClearScreen();
         PrintMenu();
 
         PrintPrompt();
-        option = GetUserChoice();
+        menuOption = GetUserChoice();
 
-        if (HandleUserInput(option)) break;
+        if (HandleUserInput(menuOption)) break;
 
-        Execute(option);
+        Execute(menuOption);
     }
 }

@@ -1,2 +1,2 @@
-decimals_places = 6
+decimals_places = 2
 confirm_quit = 1

@@ -9,9 +9,10 @@ set(SOURCES
     src/Calculator.c
     src/Execute.c
     src/Format.c
-    src/Main.c
     src/Core.c
     src/Settings.c
 )
 
-add_executable(calculator ${SOURCES})
+add_library(calc SHARED ${SOURCES})
+add_executable(calculator src/Main.c)
+target_link_libraries(calculator calc)

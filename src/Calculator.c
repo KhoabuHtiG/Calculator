@@ -20,14 +20,19 @@ static char GetUserChoice(void) {
     char choice;
 
     if (scanf(" %c", &choice) != 1) {
-        while (getchar() != '\n');
+        int ch;
+        while ((ch = getchar()) != '\n' && ch != EOF);
+
         return '\0';
     }
+
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
 
     return tolower(choice);
 }
 
-static void RunBasicOps(CalcState *calc, const char choice, double addup) {
+static void RunBasicOps(CalcState *calc, const char choice, const double addup) {
     switch (choice) {
         case '+':
             Add(&calc->result, addup);
